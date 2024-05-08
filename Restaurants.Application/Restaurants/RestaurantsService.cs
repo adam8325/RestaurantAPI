@@ -9,9 +9,16 @@ internal class RestaurantsService(IRestaurantsRepository _restaurantsRepository,
     public async Task<IEnumerable<Restaurant>> GetAllRestaurants()
     {
         logger.LogInformation("Getting all restaurants");
-
         var restaurants = await _restaurantsRepository.GetAllAsync();
 
         return restaurants;
+    }
+
+    public async Task<Restaurant?> GetRestaurantById(int id)
+    {
+        logger.LogInformation("Getting restaurant by id {id}", id);
+        var restarant = await _restaurantsRepository.GetByIdAsync(id);
+
+        return restarant;
     }
 }
