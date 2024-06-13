@@ -1,5 +1,9 @@
-﻿namespace Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
+﻿using MediatR;
+using Restaurants.Application.Restaurants.Dtos;
 
-public class GetAllRestaurantsQuery
+namespace Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
+
+public class GetAllRestaurantsQuery : IRequest<IEnumerable<RestaurantDto>>
 {
+
 }
