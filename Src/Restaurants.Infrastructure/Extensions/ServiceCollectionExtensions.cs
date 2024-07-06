@@ -6,9 +6,11 @@ using Restaurants.Domain.Entities;
 using Restaurants.Domain.Interfaces;
 using Restaurants.Domain.Repositories;
 using Restaurants.Infrastructure.Authorization.Services;
+using Restaurants.Infrastructure.Configuration;
 using Restaurants.Infrastructure.Persistence;
 using Restaurants.Infrastructure.Repositories;
 using Restaurants.Infrastructure.Seeders;
+using Restaurants.Infrastructure.Storage;
 
 namespace Restaurants.Infrastructure.Extensions;
 
@@ -28,5 +30,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IRestaurantsRepository, RestaurantsRepository>();
         services.AddScoped<IDishesRepository, DishesRepository>();
         services.AddScoped<IRestaurantAuthorizationService, RestaurantAuthorizationService>();
+
+        services.Configure<BlobStorageSettings>(configuration.GetSection("BlobStorage"));
+        services.AddScoped<IBlobStorageService, BlobStorageService>();
     }
 }
